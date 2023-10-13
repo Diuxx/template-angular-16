@@ -1,0 +1,31 @@
+
+mat-toolbar {
+    display: flex;
+    .toolbar-left, .toolbar-right, .toolbar-center {
+        display: flex;
+        width: calc(100% / 3);
+        align-items: center;
+        gap: 5px;
+    }
+    .toolbar-right {
+        justify-content: right;
+        .local-img-header {
+            border-radius: 50%;
+            cursor: pointer;
+            &:hover {
+                border: 1px solid black;
+            }
+        }
+        .local-txt-header {
+            font-size: 0.6em;
+        }
+    }
+    .toolbar-center {
+        justify-content: center;
+    }
+    .toolbar-left {
+        justify-content: left;
+        gap: 5px;
+    }
+
+}

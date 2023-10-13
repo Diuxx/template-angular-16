@@ -1,0 +1,19 @@
+<mat-toolbar>
+    <div class="toolbar-left">
+        <span>{{ appName }}</span>
+    </div>
+    <div class="toolbar-center">
+        Nicolas
+    </div>
+    <div class="toolbar-right">
+        <span [matMenuTriggerFor]="menu" 
+              class="flag-icon flag-icon-squared local-img-header flag-icon-{{ appLocale.country }}">
+        </span>
+        <span class="local-txt-header">{{ appLocale.country | uppercase }}</span>
+        <mat-menu #menu="matMenu" class="locales-menu">
+            <span mat-menu-item *ngFor="let locale of getLocales()" (click)="updateCurrentLocale(locale)">
+                {{ locale.name | titlecase }}
+            </span>
+        </mat-menu>
+    </div>
+</mat-toolbar>
