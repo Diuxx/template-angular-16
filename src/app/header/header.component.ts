@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
 import { Locale } from 'src/models/local.model';
 import { LocaleService } from 'src/services/locale.service';
@@ -15,8 +15,7 @@ export class HeaderComponent {
   public appLocale: Locale;
 
   constructor(
-    private localService: LocaleService,
-    private ref: ChangeDetectorRef
+    private localService: LocaleService
     ) {
     console.log(`prod ${environment.production}`);
     this.appName = environment.appName;
