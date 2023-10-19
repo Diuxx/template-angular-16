@@ -1,9 +1,12 @@
 {
     "pages": [
         {
-            "id": "",
-            "title": "home",
-            "path": "/assets/dynamics/pages/home",
+            "id": "yt4Xx5nHMB",
+            "title": "me",
+            "path": "./assets/dynamics/pages/me",
+            "html": "./assets/dynamics/pages/me/index.html",
+            "css": "./assets/dynamics/pages/me/style.css",
+            "config": "",
             "files": [
                 "config.json",
                 "index.html",

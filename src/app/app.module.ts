@@ -17,7 +17,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { BaseComponent } from './base/base.component';
+import { DescriptionComponent } from './home/description/description.component';
+import { ExternalComponent } from './base/external.component';
 import { Reword } from 'src/pipes/reword.pipe';
+import { SafeHtml } from 'src/pipes/safeHtml.pipe';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -26,12 +29,14 @@ export function HttpLoaderFactory(http: HttpClient) {
 
 @NgModule({
   declarations: [
-    Reword,
+    Reword, SafeHtml,
     BaseComponent,
+    ExternalComponent,
     AppComponent,
     HomeComponent,
     FooterComponent,
     HeaderComponent,
+    DescriptionComponent,
   ],
   imports: [
     BrowserModule,
