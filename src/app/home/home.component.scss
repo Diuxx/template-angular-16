@@ -4,11 +4,11 @@
 }
 
 .center-block {
-    width: 70%;
+    width: 100%;
     justify-content: center;
     text-align: center;
 }
 
 .right-block {
-    width: 30%;
+    max-width: 350px;
 }

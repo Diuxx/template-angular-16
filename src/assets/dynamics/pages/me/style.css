@@ -1,4 +1,29 @@
 .me-div {
-    background-color: black;
-    color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    max-width: 450px;
+    margin: 10px;
+    gap: 17px;
+}
+
+.me-profile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.me-profile img {
+    background-size: 80px 80px;
+    border: 0;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 80px;
+    width: 80px;
+    z-index: 0;
 }
