@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
+import { LocaleService } from 'src/services/locale.service';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  templateUrl: './app.component.html'
 })
 export class AppComponent {
-  title = 'my-app';
+  constructor(private readonly localeService: LocaleService) {
+    this.localeService.initLocale();
+  }
 }

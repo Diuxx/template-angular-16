@@ -1,5 +1,8 @@
 import { Injectable } from "@angular/core";
-import { Locale } from "src/models/local.model";
+import { TranslateService } from "@ngx-translate/core";
+import { environment } from "src/environments/environment";
+import { Locale } from "src/models/locale.model";
+import { ComponentTranslationService } from "./component-translation.service";
 
 @Injectable({
     providedIn: 'root',
@@ -9,22 +12,40 @@ export class LocaleService {
     // variables
     public handledLocales: Locale[] = [
         { id: 1, code: 'fr-FR', country: 'fr', name: 'français' },
-        { id: 2, code: 'en-US', country: 'us', name: 'anglais' }
+        { id: 2, code: 'en-US', country: 'en', name: 'anglais' }
     ];
     public default: Locale = this.handledLocales[0];
     private readonly localeKey: string = 'locale';
+    
+    constructor(
+        private readonly translate: TranslateService,
+        private readonly globalTranslationService: ComponentTranslationService)  {}
 
     /**
      * Init application locale.
      */
-    private initLocale(): void {
-        if (localStorage.getItem(this.localeKey) === null) {
-            localStorage.setItem(this.localeKey, JSON.stringify(this.default));
-        }
-    }
+    public initLocale(): string {
+        const storedLang = localStorage.getItem(this.localeKey);
+        if (!storedLang) {
+            // gets browser default lang otherwise use the stored one.
+            let browserDefaultLang: string = this.translate.getBrowserLang() ?? environment.defaultLang;
+            console.log(`Default locale: ${browserDefaultLang}`);
 
-    private storeLocale(locale: Locale): void {
-        localStorage.setItem(this.localeKey, JSON.stringify(locale));
+            if (!this.handledLocales.some(l => l.country === browserDefaultLang)) {
+                browserDefaultLang = environment.defaultLang;
+            }
+            this.translate.setDefaultLang(browserDefaultLang);
+            localStorage.setItem(this.localeKey, browserDefaultLang);
+            return browserDefaultLang;
+        }
+
+        // if stored locale is not handled just remove and call the function again.
+        if (!this.handledLocales.some(l => l.country === storedLang)) {
+            localStorage.removeItem(this.localeKey);
+            return this.initLocale();
+        }
+
+        return storedLang;
     }
 
     /**
@@ -32,22 +53,19 @@ export class LocaleService {
      * @returns current app locale.
      */
     public getAppCurrentLocale(): Locale {
-        this.initLocale(); // will avoid if locale already exist.
-        return JSON.parse(localStorage.getItem(this.localeKey) as string) ?? this.handledLocales[0];
+        const storedLang = this.initLocale(); // will avoid if locale already exist.
+        return this.handledLocales.find(l => l.country === storedLang) ?? this.default;
     }
 
     /**
      * Set app current locale.
      */
-    public setAppCurrentLocale(locale: Locale): Locale {
-        const localExist: boolean = this.handledLocales.some(l => JSON.stringify(l) === JSON.stringify(locale)); 
-        if (localExist) {
-            this.storeLocale(locale);
-            return locale;
-        } 
-        
-        this.initLocale();    
-        return this.default;
+    public setAppCurrentLocale(lang: string): Locale {
+        localStorage.setItem(this.localeKey, lang);
+        let result = this.getAppCurrentLocale();
+
+        this.globalTranslationService.updateLocale();
+        return result;
     }
 
     // infos
