@@ -8,7 +8,8 @@ const homeRoute: Route = {
         title: 'Page d\'accueil du best template ever',
         slugs: ['template', 'angular', 'basics', 'dev'],
         meta: {
-            description: 'Le meilleur template de la planète'
+            description: 'Le meilleur template de la planète',
+            'x:description': "Le meilleur template de la planète"
         }
     }
 }

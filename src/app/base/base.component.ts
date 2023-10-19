@@ -1,23 +1,73 @@
-import { Directive } from "@angular/core";
-import { Title } from "@angular/platform-browser";
-import { ActivatedRoute, Router } from "@angular/router";
+import { Component, inject } from "@angular/core";
+import { Meta, Title } from "@angular/platform-browser";
+import { ActivatedRoute } from "@angular/router";
+import { TranslateService } from "@ngx-translate/core";
 import { SeoRef } from "src/models/seoRef.model";
+import { IsolatedTranslationService } from "src/services/isolatedTranslation.service";
+import { LocaleService } from "src/services/locale.service";
 
-@Directive()
+@Component({
+    selector: 'app-base',
+    template: ``,
+    styles: []
+})
 export class BaseComponent {
+    public translations: any = undefined;
     private seoRef!: SeoRef;
-    constructor(
-        private route: ActivatedRoute,
-        private router: Router,
-        private titleService: Title
-    ) {
-        this.seoRef = this.route.snapshot.data as SeoRef;
-        console.log('seoRefs:', this.seoRef);
+    private componentName: string = 'default';
+    
+    // injects
+    private route = inject(ActivatedRoute); 
+    private titleService = inject(Title);
+    private metaService = inject(Meta);
+    private localeService = inject(LocaleService);
+    private translationService = inject(IsolatedTranslationService);
+    private translate = inject(TranslateService);
 
+    constructor() {
+        this.seoRef = this.route.snapshot.data as SeoRef;
+        this.componentName = this.constructor.name
+            .toLowerCase()
+            .replace('component', '');
+
+        console.log('seoRefs:', this.seoRef, this.componentName);
+
+        // seo data
         this.setTitle();
+        this.setMeta();
+        this.setSlugs();
+
+        // load translations
+        this.loadTranslations();
+        this.translationService.test$.subscribe(r => this.loadTranslations());
+    }
+
+    public setTranslations(data: any): void {
+        this.translations = data;
     }
 
     private setTitle(): void {
         this.titleService.setTitle(this.seoRef.title);
+    }
+
+    private setMeta(): void {
+        for(let key of Object.keys(this.seoRef.meta)) {
+            this.metaService.addTag({
+                name: key,
+                content: this.seoRef.meta[key]
+            })
+        }
+    }
+
+    private setSlugs(): void {
+        
+    }
+
+    private loadTranslations(): void {
+        const currentLocale: string = this.localeService.getAppCurrentLocale().country;
+        this.translationService.load(currentLocale, this.componentName).subscribe(data => {
+          this.setTranslations(data);
+          this.translate.use(currentLocale);
+        });
     }
 }

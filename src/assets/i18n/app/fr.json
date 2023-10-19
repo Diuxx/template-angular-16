@@ -1,3 +1,7 @@
 {
+    "langs":  {
+        "french": "Français",
+        "english": "Anglais"
+    },
     "test": "app-fr"
 }

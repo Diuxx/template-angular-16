@@ -1,3 +1,4 @@
 {
-    "test": "test1"
+    "welcome": "Bienvenue sur angular template app",
+    "description": "Cette application a été créée dans les but de servir de template pour mes différents projets web."
 }

@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import { environment } from "src/environments/environment";
 import { Locale } from "src/models/locale.model";
-import { ComponentTranslationService } from "./component-translation.service";
+import { IsolatedTranslationService } from "./isolatedTranslation.service";
 
 @Injectable({
     providedIn: 'root',
@@ -11,15 +11,15 @@ export class LocaleService {
     
     // variables
     public handledLocales: Locale[] = [
-        { id: 1, code: 'fr-FR', country: 'fr', name: 'français' },
-        { id: 2, code: 'en-US', country: 'en', name: 'anglais' }
+        { id: 1, code: 'fr', country: 'fr', name: 'langs.french' },
+        { id: 2, code: 'us', country: 'en', name: 'langs.english' }
     ];
     public default: Locale = this.handledLocales[0];
     private readonly localeKey: string = 'locale';
     
     constructor(
         private readonly translate: TranslateService,
-        private readonly globalTranslationService: ComponentTranslationService)  {}
+        private readonly translationService: IsolatedTranslationService)  {}
 
     /**
      * Init application locale.
@@ -64,7 +64,7 @@ export class LocaleService {
         localStorage.setItem(this.localeKey, lang);
         let result = this.getAppCurrentLocale();
 
-        this.globalTranslationService.updateLocale();
+        this.translationService.updateLocale();
         return result;
     }
 

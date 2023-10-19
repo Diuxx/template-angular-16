@@ -1,0 +1,17 @@
+{
+    "pages": [
+        {
+            "id": "",
+            "title": "home",
+            "path": "/assets/dynamics/pages/home",
+            "files": [
+                "config.json",
+                "index.html",
+                "/imgs/test.png"
+            ]
+        }
+    ],
+    "posts": [
+
+    ]
+}

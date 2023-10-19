@@ -1,38 +1,25 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
-import { Observable, Subject, Subscription, tap } from "rxjs";
+import { Observable, Subject, tap } from "rxjs";
 
 @Injectable({
   providedIn: 'root',
 })
-export class ComponentTranslationService {
+export class IsolatedTranslationService {
   // variables
   private readonly localeUrl = './assets/i18n';
-
-  private testSource = new Subject<any>();
-  public test$ = this.testSource.asObservable();
+  private localesChangesBroadcast = new Subject<any>();
+  public test$ = this.localesChangesBroadcast.asObservable();
 
   constructor(
       private translate: TranslateService,
       private http: HttpClient
-  ) {
-    console.log('init translate!');
-  }
+  ) {}
 
   public load(locale: string, component: string): Observable<any> {
       const fullUrl: string = `${this.localeUrl}/${component}/${locale}.json`;
-      console.log(`full url: ${fullUrl}`);
-
-      const obs: any = this.http.get(fullUrl)
-        .pipe(
-          tap((data) => {
-            this.translate.setTranslation(locale, data);
-            this.translate.use(locale);
-            console.log(data);
-          })
-        );
-      return obs;
+      return this.http.get(fullUrl);
   }
 
   public getTranslate(): TranslateService {
@@ -40,6 +27,6 @@ export class ComponentTranslationService {
   }
 
   public updateLocale(): void {
-    this.testSource.next(this.translate.currentLang);
+    this.localesChangesBroadcast.next(this.translate.currentLang);
   }
 }
