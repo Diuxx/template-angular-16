@@ -15,7 +15,7 @@
 }
 
 .me-profile img {
-    background-size: 80px 80px;
+    background-size: 200px 200px;
     border: 0;
     -webkit-border-radius: 50%;
     border-radius: 50%;
@@ -23,7 +23,7 @@
     justify-content: center;
     align-items: center;
     position: relative;
-    height: 80px;
-    width: 80px;
+    height: 200px;
+    width: 200px;
     z-index: 0;
 }

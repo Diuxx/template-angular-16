@@ -3,5 +3,11 @@
         "french": "Français",
         "english": "Anglais"
     },
-    "test": "app-fr"
+    "footer": {
+        "home": "",
+        "blog": "",
+        "contact": "",
+        "about": "",
+        "privacy": "",
+    }
 }

@@ -1,8 +1,8 @@
 <nav>
-    <a href="/">Home</a> -
-    <a href="/Contact">Blog</a> -
-    <a href="/About">Contact</a> -
-    <a href="/About">About</a> -
+    <a routerLink="/">Home</a> -
+    <a routerLink="/Blog">Blog</a> -
+    <a routerLink="/Contact">Contact</a> -
+    <a routerLink="/About">About</a> -
     <div class="clickable">Privacy Policy</div>
 </nav>
-<p>Copyright © {{ currentDate | date }}</p>
+<p>Copyright © {{ currentDate | date: 'yyyy' }}</p>
