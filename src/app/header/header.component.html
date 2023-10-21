@@ -1,17 +1,30 @@
 <mat-toolbar>
     <div class="toolbar-left">
-        <span>{{ appName }}</span>
+        <a routerLink="/" class="app-header-name">{{ appName }}</a>
     </div>
     <div class="toolbar-center"></div>
     <div class="toolbar-right">
-        <span [matMenuTriggerFor]="menu" 
-              class="flag-icon flag-icon-squared local-img-header flag-icon-{{ appLocale.code }}">
-        </span>
-        <span class="local-txt-header">{{ appLocale.country | uppercase }}</span>
-        <mat-menu #menu="matMenu" class="locales-menu">
-            <span mat-menu-item *ngFor="let locale of getLocales()" (click)="updateCurrentLocale(locale)">
-                {{ locale.name | translate | titlecase }}
+        <ul class="app-navigation">
+            <li [ngClass]="{'active': isActive('/') }">
+                <a routerLink="/">Home</a>
+            </li>
+            <li [ngClass]="{'active': isActive('blog') }">
+                <a routerLink="/blog">Blog</a>
+            </li>
+            <li [ngClass]="{'active': isActive('let-me-taste-it') }">
+                <a routerLink="/Let-me-taste-it">Let me taste it {{ '&#128526;' }}</a>
+            </li>
+        </ul>
+        <div class="app-opts">
+            <span [matMenuTriggerFor]="menu" 
+                class="flag-icon flag-icon-squared local-img-header flag-icon-{{ appLocale.code }}">
             </span>
-        </mat-menu>
+            <span class="local-txt-header">{{ appLocale.country | uppercase }}</span>
+            <mat-menu #menu="matMenu" class="locales-menu">
+                <span mat-menu-item *ngFor="let locale of getLocales()" (click)="updateCurrentLocale(locale)">
+                    {{ locale.name | translate | titlecase }}
+                </span>
+            </mat-menu>
+        </div>
     </div>
 </mat-toolbar>

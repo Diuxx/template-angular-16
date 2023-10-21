@@ -21,6 +21,7 @@ import { DescriptionComponent } from './home/description/description.component';
 import { ExternalComponent } from './base/external.component';
 import { Reword } from 'src/pipes/reword.pipe';
 import { SafeHtml } from 'src/pipes/safeHtml.pipe';
+import { BlogComponent } from './blog/blog.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -37,6 +38,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     FooterComponent,
     HeaderComponent,
     DescriptionComponent,
+    BlogComponent,
   ],
   imports: [
     BrowserModule,

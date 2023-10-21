@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment.development';
 import { Locale } from 'src/models/locale.model';
 import { LocaleService } from 'src/services/locale.service';
@@ -14,7 +15,8 @@ export class HeaderComponent {
   public appLocale: Locale;
 
   constructor(
-    private readonly localeService: LocaleService
+    private readonly localeService: LocaleService,
+    private readonly router: Router
     ) {
     console.log(`prod ${environment.production}`);
     this.appName = environment.appName;
@@ -27,5 +29,9 @@ export class HeaderComponent {
 
   public getLocales(): Locale[] {
     return this.localeService.handledLocales;
+  }
+
+  public isActive(slug: string): boolean {
+    return this.router.url.endsWith(slug);
   }
 }

@@ -4,10 +4,10 @@
         "english": "Anglais"
     },
     "footer": {
-        "home": "",
-        "blog": "",
-        "contact": "",
-        "about": "",
-        "privacy": "",
+        "home": "Accueil",
+        "blog": "Blog",
+        "contact": "Contact",
+        "about": "À Propos",
+        "privacy": "Politique données"
     }
 }

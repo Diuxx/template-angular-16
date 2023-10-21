@@ -8,7 +8,13 @@ mat-toolbar {
         gap: 5px;
     }
     .toolbar-right {
-        justify-content: right;
+        justify-content: space-between;
+        .app-opts {
+            display: flex;
+            gap: 5px;
+            width: fit-content;
+            align-items: center;
+        }
         .local-img-header {
             border-radius: 50%;
             cursor: pointer;
@@ -19,6 +25,35 @@ mat-toolbar {
         .local-txt-header {
             font-size: 0.6em;
         }
+
+        ul.app-navigation {
+            display: flex;
+            flex-direction: row;
+            width: fit-content;
+            list-style: none;
+            gap: 15px;
+            align-self: left;
+            margin: 0;
+            padding: 0;
+        }
+
+        ul.app-navigation li {
+            font-size: 0.8em;
+            width: fit-content;
+            text-align: center;
+            user-select: none;
+            margin: 0;
+            &:hover {
+                cursor: pointer;
+                text-decoration: underline;
+            }
+            &.active {
+                text-decoration: underline;
+            }
+            a {
+                color: var(--main-fg-color)
+            }
+        }
     }
     .toolbar-center {
         justify-content: center;
@@ -27,5 +62,9 @@ mat-toolbar {
         justify-content: left;
         gap: 5px;
     }
-
+    .app-header-name {
+        color: var(--main-fg-color);
+        text-decoration: none;
+        font-size: 0.9em;
+    }
 }

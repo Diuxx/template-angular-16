@@ -1,8 +1,8 @@
 <nav>
-    <a routerLink="/">Home</a> -
-    <a routerLink="/Blog">Blog</a> -
-    <a routerLink="/Contact">Contact</a> -
-    <a routerLink="/About">About</a> -
-    <div class="clickable">Privacy Policy</div>
+    <a routerLink="/">{{ 'footer.home' | translate }}</a> -
+    <a routerLink="/Blog">{{ 'footer.blog' | translate }}</a> -
+    <a routerLink="/About">{{ 'footer.about' | translate }}</a> -
+    <a routerLink="/Contact">{{ 'footer.contact' | translate }}</a> -
+    <div class="clickable">{{ 'footer.privacy' | translate }}</div>
 </nav>
 <p>Copyright © {{ currentDate | date: 'yyyy' }}</p>
