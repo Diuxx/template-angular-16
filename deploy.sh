@@ -17,6 +17,8 @@ fi
 
 # Remove all files and subdirectories in the directory
 eval "sudo rm -r \"$deliver_path\"/*"
+eval "sudo rm -rf ./${app_name}/"
+
 echo "Directory contents removed: $deliver_path"
 
 eval "git clone --branch $branch $repo"
