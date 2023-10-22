@@ -6,25 +6,28 @@
     <div class="toolbar-right">
         <ul class="app-navigation">
             <li [ngClass]="{'active': isActive('/') }">
-                <a routerLink="/">Home</a>
+                <a routerLink="/">{{ 'header.home' | translate }}</a>
             </li>
             <li [ngClass]="{'active': isActive('blog') }">
-                <a routerLink="/blog">Blog</a>
+                <a routerLink="/blog">{{ 'header.blog' | translate }}</a>
             </li>
             <li [ngClass]="{'active': isActive('let-me-taste-it') }">
-                <a routerLink="/Let-me-taste-it">Let me taste it {{ '&#128526;' }}</a>
+                <a routerLink="/let-me-taste-it">{{ 'header.letMe' | translate }} {{ '&#128526;' }}</a>
             </li>
         </ul>
         <div class="app-opts">
-            <span [matMenuTriggerFor]="menu" 
-                class="flag-icon flag-icon-squared local-img-header flag-icon-{{ appLocale.code }}">
-            </span>
-            <span class="local-txt-header">{{ appLocale.country | uppercase }}</span>
-            <mat-menu #menu="matMenu" class="locales-menu">
-                <span mat-menu-item *ngFor="let locale of getLocales()" (click)="updateCurrentLocale(locale)">
-                    {{ locale.name | translate | titlecase }}
+            <mat-icon [fontIcon]="getTheme()" [ngClass]="getThemeColor()" class="theme" (click)="updateTheme()"></mat-icon>
+            <div class="row align-center gap-5">
+                <span [matMenuTriggerFor]="menu" 
+                    class="flag-icon flag-icon-squared local-img-header flag-icon-{{ appLocale.code }}">
                 </span>
-            </mat-menu>
+                <span class="local-txt-header">{{ appLocale.country | uppercase }}</span>
+                <mat-menu #menu="matMenu" class="locales-menu">
+                    <span mat-menu-item *ngFor="let locale of getLocales()" (click)="updateCurrentLocale(locale)">
+                        {{ locale.name | translate | titlecase }}
+                    </span>
+                </mat-menu>
+            </div>
         </div>
     </div>
 </mat-toolbar>

@@ -8,12 +8,24 @@ mat-toolbar {
         gap: 5px;
     }
     .toolbar-right {
+        @media only screen and (max-width: 1000px) {
+            width: 100%;
+        }
         justify-content: space-between;
         .app-opts {
             display: flex;
-            gap: 5px;
+            gap: 15px;
             width: fit-content;
             align-items: center;
+            .theme {
+                cursor: pointer;
+            }
+            .white-theme {
+                color: var(--app-yellow-1);
+            }
+            .dark-theme {
+                color: var(--app-black-soft);
+            }
         }
         .local-img-header {
             border-radius: 50%;

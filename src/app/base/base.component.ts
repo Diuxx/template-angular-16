@@ -2,6 +2,7 @@ import { Component, inject } from "@angular/core";
 import { Meta, Title } from "@angular/platform-browser";
 import { ActivatedRoute } from "@angular/router";
 import { TranslateService } from "@ngx-translate/core";
+import { environment } from "src/environments/environment";
 import { SeoRef } from "src/models/seoRef.model";
 import { IsolatedTranslationService } from "src/services/isolatedTranslation.service";
 import { LocaleService } from "src/services/locale.service";
@@ -47,7 +48,7 @@ export class BaseComponent {
     }
 
     private setTitle(): void {
-        this.titleService.setTitle(this.seoRef.title);
+        this.titleService.setTitle(`${environment.appName} | ${this.seoRef.title}`);
     }
 
     private setMeta(): void {

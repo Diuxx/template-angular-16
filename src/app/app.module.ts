@@ -15,6 +15,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { BaseComponent } from './base/base.component';
 import { DescriptionComponent } from './home/description/description.component';
@@ -22,6 +23,8 @@ import { ExternalComponent } from './base/external.component';
 import { Reword } from 'src/pipes/reword.pipe';
 import { SafeHtml } from 'src/pipes/safeHtml.pipe';
 import { BlogComponent } from './blog/blog.component';
+import { LetMeTasteItComponent } from './let-me-taste-it/let-me-taste-it.component';
+import { DialogComponent } from 'src/shared/dialog/dialog.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -39,6 +42,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     HeaderComponent,
     DescriptionComponent,
     BlogComponent,
+    LetMeTasteItComponent,
+    DialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,7 +62,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatIconModule,
     MatInputModule,
     MatMenuModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

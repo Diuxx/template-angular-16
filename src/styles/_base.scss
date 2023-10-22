@@ -12,7 +12,7 @@ html, body { height: 100%; }
 
 .black-theme {
     --main-bg-color: var(--app-black-soft);
-    --main-fg-color: var(--app-black);
+    --main-fg-color: var(--app-white);
 
     --highlight-color: var(--app-green);
     --link-color: var(--app-green);
@@ -20,8 +20,8 @@ html, body { height: 100%; }
 }
 
 body {
-    color: var(--main-bg-color);
-    background-color: var(--main-fg-color);
+    color: var(--main-fg-color);
+    background-color: var(--main-bg-color);
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

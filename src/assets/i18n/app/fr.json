@@ -3,6 +3,11 @@
         "french": "Français",
         "english": "Anglais"
     },
+    "header": {
+        "home": "Accueil",
+        "blog": "Blog",
+        "letMe": "Laissez moi y goûter"
+    },
     "footer": {
         "home": "Accueil",
         "blog": "Blog",
